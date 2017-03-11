@@ -15,21 +15,25 @@ $ npm install --save service-factory
 import ServiceFactory from "service-factory"
 
 const declaration = {
-  allUsers: {
+
+  listUsers: {
     method: "GET",
     url: "/users"
   },
+
   findUser: {
     method: "GET",
     url: "/users/:id"
   },
-  create: {
+
+  createUser: {
     method: "POST",
     url: "/users"
   }
+
 }
 
 const service = ServiceFactory.baseUrl("www.example.com").create(declaration)
 
-const users = await service.allUsers()
+const users = await service.listUsers()
 ```
