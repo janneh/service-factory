@@ -1,0 +1,9 @@
+{
+  "name": "service-factory",
+  "version": "0.0.1",
+  "description": "Declarative HTTP client builder",
+  "main": "index.js",
+  "repository": "git@github.com:janneh/service-factory.git",
+  "author": "janneh",
+  "license": "MIT"
+}
