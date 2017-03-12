@@ -1,7 +1,7 @@
 import test from "tape"
 import ServiceFactory from "./index"
 
-test("ServiceFactory create service", (t) => {
+test("ServiceFactory create()", (t) => {
   t.plan(1)
   const declaration = {
     allTodos: {

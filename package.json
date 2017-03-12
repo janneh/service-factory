@@ -6,6 +6,9 @@
   "repository": "git@github.com:janneh/service-factory.git",
   "author": "janneh",
   "license": "MIT",
+  "dependencies": {
+    "axios": "^0.15.3"
+  },
   "devDependencies": {
     "faucet": "^0.0.1",
     "tape": "^4.6.3"
