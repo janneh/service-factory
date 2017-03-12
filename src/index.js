@@ -6,15 +6,12 @@ class ServiceFactory {
   }
 
   constructor(host) {
-    this.host = host
+    this.client = axios.create({ baseURL: host })
   }
 
   create(declaration) {
     return Object.keys(declaration).reduce((acc, current) => {
-      const url = `${this.host}${declaration[current].url}`
-      const options = Object.assign({}, declaration[current], url)
-      acc[current] = () => axios(options)
-      return acc
+      return Object.assign(acc, { [current]: () => this.client(declaration[current]) })
     }, {})
   }
 }
