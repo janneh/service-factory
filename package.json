@@ -18,6 +18,7 @@
     "tape": "^4.6.3"
   },
   "scripts": {
+    "dev": "babel-node --presets=es2015,stage-3 --plugins=babel-plugin-transform-decorators-legacy dev.js",
     "test": "babel-node --presets=es2015,stage-3 --plugins=babel-plugin-transform-decorators-legacy src/index.test.js | faucet"
   }
 }
