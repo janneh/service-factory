@@ -19,6 +19,11 @@ const declaration = {
   }
 }
 
+const decoratedDeclaration = {
+  @get("/get")
+  testGet: {}
+}
+
 console.log(declaration)
 
 const defaults = { headers: { Accept: "application/json", "Content-Type": "application/json" } }
