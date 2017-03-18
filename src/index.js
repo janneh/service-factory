@@ -10,19 +10,23 @@ class ServiceFactory {
     this.defaults = defaults
   }
 
-  withDefaults(config) {
-    this.defaults = config
+  withDefaults(defaults) {
+    this.defaults = defaults
     return this
   }
 
-  requestOptions(options) {
-    return Object.assign(this.defaults, options)
+  requestOptions(declaration) {
+    return Object.assign(this.defaults, declaration)
+  }
+
+  buildRequest(declaration) {
+    return params => this.client(Object.assign(this.requestOptions(declaration), params))
   }
 
   create(declaration) {
     return Object.keys(declaration).reduce((acc, current) => {
       return Object.assign(acc, {
-        [current]: () => this.client(this.requestOptions(declaration[current]))
+        [current]: this.buildRequest(declaration[current])
       })
     }, {})
   }
