@@ -23,5 +23,8 @@
     "dev": "babel-node --presets=es2015,stage-3 --plugins=babel-plugin-transform-decorators-legacy dev.js",
     "test-raw": "babel-node --presets=es2015,stage-3 --plugins=babel-plugin-transform-decorators-legacy src/index.test.js",
     "test": "npm run test-raw | faucet"
-  }
+  },
+  "files": [
+    "dist"
+  ]
 }
