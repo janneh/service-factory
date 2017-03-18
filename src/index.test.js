@@ -34,6 +34,7 @@ test("ServiceFactory created service GET request", (t) => {
   service.allTodos().then(callback)
   moxios.wait(() => {
     t.equal(callback.getCall(0).args[0].data, "hello", "should be able to call service with GET request")
+    moxios.uninstall()
   })
 })
 
@@ -50,5 +51,6 @@ test("ServiceFactory created service POST request", (t) => {
   service.allTodos().then(callback)
   moxios.wait(() => {
     t.equal(callback.getCall(0).args[0].data, "hello", "should be able to call service with GET request")
+    moxios.uninstall()
   })
 })
