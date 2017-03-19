@@ -7,22 +7,18 @@
   "author": "janneh",
   "license": "MIT",
   "dependencies": {
+    "@types/axios": "^0.14.0",
     "axios": "^0.15.3"
   },
   "devDependencies": {
-    "babel-cli": "^6.23.0",
-    "babel-plugin-transform-decorators-legacy": "^1.3.4",
-    "babel-preset-es2015": "^6.22.0",
-    "babel-preset-stage-3": "^6.22.0",
-    "faucet": "^0.0.1",
+    "@types/sinon": "^1.16.35",
+    "ava": "^0.18.2",
     "moxios": "^0.3.0",
     "sinon": "^2.0.0",
-    "tape": "^4.6.3"
+    "typescript": "^2.2.1"
   },
   "scripts": {
-    "dev": "babel-node --presets=es2015,stage-3 --plugins=babel-plugin-transform-decorators-legacy dev.js",
-    "test-raw": "babel-node --presets=es2015,stage-3 --plugins=babel-plugin-transform-decorators-legacy src/index.test.js",
-    "test": "npm run test-raw | faucet"
+    "test": "tsc && ava"
   },
   "files": [
     "dist"
