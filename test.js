@@ -47,15 +47,27 @@ test("ServiceFactory created POST request", async t => {
 })
 
 test("ServiceFactory created POST sends data", async t => {
-  t.plan(1)
   const service = ServiceFactory.baseUrl("www.foo.com").create(declaration)
   const expected = { "hello": "world" }
   moxios.stubRequest("www.foo.com/todos", {
     status: 200,
     responseText: "hello"
   })
-  service.allTodos({ data: expected }).then(() => {
-    const actual = moxios.requests.mostRecent().config.data
-    t.is(actual, JSON.stringify(expected))
+  service.createTodo({ data: expected }).then(() => {
+    const actual = moxios.requests.mostRecent().config
+    t.is(actual.data, JSON.stringify(expected))
+  })
+})
+
+test("ServiceFactory request with access token auth", async t => {
+  const service = ServiceFactory.baseUrl("www.foo.com").create(declaration)
+  const expected = "secret"
+  moxios.stubRequest("www.foo.com/todos", {
+    status: 200,
+    responseText: expected
+  })
+  const response = await service.allTodos({ accessToken: expected }).then(() => {
+    const actual = moxios.requests.mostRecent().config
+    t.is(actual.headers.Authorization, `Bearer ${expected}`)
   })
 })
