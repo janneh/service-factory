@@ -1,5 +1,9 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios"
 
+interface DeclarationInterface {
+  [requestName: string]: AxiosRequestConfig
+}
+
 class ServiceFactory {
   static baseUrl(host: string, defaults: AxiosRequestConfig = {}) {
     return new ServiceFactory(host, defaults)
@@ -26,7 +30,7 @@ class ServiceFactory {
     return (params: AxiosRequestConfig) => this.client.request(Object.assign(this.requestOptions(declaration), params))
   }
 
-  create(declaration: any) {
+  create(declaration: DeclarationInterface) {
     return Object.keys(declaration).reduce((acc, current) => {
       return Object.assign(acc, {
         [current]: this.buildRequest(declaration[current])
