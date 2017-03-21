@@ -1,4 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios"
+import * as deepmerge from "deepmerge"
 
 interface ServiceDeclaration {
   [requestName: string]: AxiosRequestConfig
@@ -26,27 +27,19 @@ class ServiceFactory {
     return this
   }
 
-  mergeOptions(a: ServiceRequestConfig = {}, b: ServiceRequestConfig = {}) {
-    const data = Object.assign({}, a.data, b.data)
-    const params = Object.assign({}, a.params, b.params)
-    const headers = Object.assign({}, a.headers, b.headers)
-    return Object.assign(a, b, { data, params, headers })
+  requestOptions(declaration: AxiosRequestConfig = {}) {
+    return deepmerge(this.defaults, declaration)
   }
 
-  requestOptions(declaration: AxiosRequestConfig) {
-    return this.mergeOptions(this.defaults, declaration)
-  }
-
-  addAuthHeader(params: ServiceRequestConfig) {
+  withAuthHeader(params: ServiceRequestConfig) {
     if (!params || !params.accessToken) return params
     const { accessToken, ...config } = params
-    config.headers = Object.assign({}, config.headers, { Authorization: `Bearer ${accessToken}` })
-    return config
+    return deepmerge(config, { headers: { Authorization: `Bearer ${accessToken}` } })
   }
 
   buildRequest(declaration: AxiosRequestConfig) {
-    return (params: ServiceRequestConfig) => {
-      const config = this.mergeOptions(this.requestOptions(declaration), this.addAuthHeader(params))
+    return (params: ServiceRequestConfig = {}) => {
+      const config = deepmerge(this.requestOptions(declaration), this.withAuthHeader(params))
       return this.client.request(config)
     }
   }
