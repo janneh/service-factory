@@ -3,7 +3,7 @@
   "compilerOptions": {
     "target": "es6",
     "module": "commonjs",
-    // "noImplicitAny": true,
+    "noImplicitAny": true,
     "sourceMap": true,
     "outDir": "dist",
     "typeRoots": ["node_modules/@types"]
