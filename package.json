@@ -23,7 +23,7 @@
     "test": "tsc && ava -s",
     "build": "rm -rf ./dist && tsc",
     "prepublish": "npm run build",
-    "postpublish": "rm -r ./build"
+    "postpublish": "rm -r ./dist"
   },
   "files": [
     "dist"
