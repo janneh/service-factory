@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "Declarative HTTP client builder",
   "main": "index.js",
+  "types": "index.d.ts",
   "repository": "git@github.com:janneh/service-factory.git",
   "author": "janneh",
   "license": "MIT",
@@ -26,6 +27,7 @@
     "postpublish": "rm -r ./dist"
   },
   "files": [
-    "dist"
+    "dist",
+    "index.d.ts"
   ]
 }
