@@ -10,7 +10,7 @@ interface ServiceRequestConfig extends AxiosRequestConfig {
 }
 
 interface ServiceClient {
-  [requestName: string]: (params: ServiceRequestConfig) => AxiosPromise
+  [requestName: string]: (params?: ServiceRequestConfig) => AxiosPromise
 }
 
 class ServiceFactory {

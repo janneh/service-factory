@@ -12,12 +12,12 @@ export interface ServiceRequestConfig extends AxiosRequestConfig {
 }
 
 export interface ServiceClient {
-  [requestName: string]: (params: ServiceRequestConfig) => AxiosPromise
+  [requestName: string]: (params?: ServiceRequestConfig) => AxiosPromise
 }
 
 export interface ServiceFactory {
-  (host: string, defaults: AxiosRequestConfig): ServiceFactory
-  baseUrl(host: string, defaults: AxiosRequestConfig): ServiceFactory
+  (host: string, defaults?: AxiosRequestConfig): ServiceFactory
+  baseUrl(host: string, defaults?: AxiosRequestConfig): ServiceFactory
   withDefaults(defaults: AxiosRequestConfig): ServiceFactory
   create(declaration: ServiceDeclaration): ServiceClient
 }
