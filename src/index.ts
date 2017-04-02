@@ -1,15 +1,15 @@
 import axios, { AxiosInstance, AxiosPromise, AxiosRequestConfig } from "axios"
 import * as deepmerge from "deepmerge"
 
-interface ServiceDeclaration {
+export interface ServiceDeclaration {
   [requestName: string]: AxiosRequestConfig
 }
 
-interface ServiceRequestConfig extends AxiosRequestConfig {
+export interface ServiceRequestConfig extends AxiosRequestConfig {
   accessToken?: string
 }
 
-interface ServiceClient {
+export interface ServiceClient {
   [requestName: string]: (params?: ServiceRequestConfig) => AxiosPromise
 }
 
@@ -37,7 +37,7 @@ class ServiceFactory {
   }
 
   private buildRequest(declaration: AxiosRequestConfig) {
-    return (params: ServiceRequestConfig = {}) => {
+    return async (params: ServiceRequestConfig = {}) => {
       const config = deepmerge(this.requestOptions(declaration), this.withAuthHeader(params))
       return this.client.request(config)
     }

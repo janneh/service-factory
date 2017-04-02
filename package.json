@@ -2,8 +2,8 @@
   "name": "service-factory",
   "version": "0.3.0",
   "description": "Declarative HTTP client builder",
-  "main": "index.js",
-  "types": "index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "repository": "git@github.com:janneh/service-factory.git",
   "author": "janneh",
   "license": "MIT",
@@ -22,12 +22,11 @@
   },
   "scripts": {
     "test": "tsc && ava -s",
-    "build": "rm -rf ./dist && tsc",
+    "build": "rm -rf ./dist && tsc --declaration",
     "prepublish": "npm run build",
     "postpublish": "rm -r ./dist"
   },
   "files": [
-    "dist",
-    "index.d.ts"
+    "dist"
   ]
 }
